@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-email=read -r "Enter your email"
+email=read -p "Enter your email: "
 ssh-keygen -t ed25519 -C "${email}"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
