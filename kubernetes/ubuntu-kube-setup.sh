@@ -1,3 +1,10 @@
+#!/bin/bash
+
+#System Requirements 
+#RAM: At least 2GB
+#Processor: A CPU with at least 2 vCores
+#Storage: At least 20GB of storage
+
 #Install docker
 sudo apt-get update -y
 sudo apt-get install -y \
