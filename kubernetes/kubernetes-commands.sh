@@ -1,5 +1,11 @@
 #!/bin/bash
 #
+#Usage
+#Copy any of the commands with no comment that serve your purpose 
+#
+####Creating Resources
+kubectl create -f resource-file.yaml
+#
 ####Annotating pods
 kubectl annotate pod pod-name annnotation-key=annotaion-value #annotates a specified pod
 #
