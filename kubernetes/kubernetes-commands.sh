@@ -21,3 +21,7 @@ kubectl delete pod -l key=value #deleting pods by label
 kubectl delete ns namespace #deleting a namespace and all its resources
 kubectl delete pod --all #deleting all pods in the current namespace
 kubectl delete all --all #deleting all resources in the current namespace
+#
+####Logging pods
+kubectl logs mypod #provides log for the current pod
+kubectl logs mypod --previous #provides log for the previous pod
