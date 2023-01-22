@@ -21,6 +21,7 @@ newgrp docker
 #Download and start minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
-minikube start 1> /dev/null
+minikube start 1> ${HOME}/kube_install.log
 alias kubectl="minikube kubectl --"
 echo "Try your first kubectl command. Ex: kubectl get pods"
+echo "View minikube install log here `readlink -f ${HOME}/kube_install.log`"
