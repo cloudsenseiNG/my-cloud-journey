@@ -25,6 +25,7 @@ kubectl delete all --all #deleting all resources in the current namespace
 ####Logging pods
 kubectl logs mypod #provides log for the current pod
 kubectl logs mypod --previous #provides log for the previous pod
+#
 ####replication controllers
 kubectl label pod pod-name key=value --overwrite 
 kubectl delete rc rc-name --cascade=false #Keeps pods created by rc running regardless of deletion
