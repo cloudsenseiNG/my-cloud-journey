@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#This is a simple script that automates the installation of docker and minikube on your machine
 #System Requirements 
 #RAM: At least 2GB
 #Processor: A CPU with at least 2 vCores
@@ -24,7 +25,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
-#Creates an alias file and adds "kubectl as an alias"
+#Creates an alias file and adds "kubectl" to minikube's native kubectl command
 touch ${HOME}/.bash_aliases
 echo alias kubectl=\"minikube kubectl --\" | sudo tee -a ${HOME}/.bash_aliases
 
