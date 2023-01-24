@@ -23,10 +23,13 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 #Download and start minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+#Creates an alias file and adds "kubectl as an alias"
 touch ${HOME}/.bash_aliases
 echo alias kubectl=\"minikube kubectl --\" | sudo tee -a ${HOME}/.bash_aliases
 
-echo "To start <minikube>, use minikube start"
+echo "To start minikube: use minikube start"
+echo "If minikube starts successfully, Try: kubectl get pod"
 
-#Add user to docker group & switches to docker group in a new shell
+#Add user to docker group and switch to docker group
 sudo usermod -aG docker $USER && newgrp docker
