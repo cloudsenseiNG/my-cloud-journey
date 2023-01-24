@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#This is a simple script that automates the installation of docker and minikube on your machine
+#This is a simple script that automates the installation of docker and minikube on Ubuntu machines
 #System Requirements 
 #RAM: At least 2GB
 #Processor: A CPU with at least 2 vCores
@@ -25,22 +25,22 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
-#Check if bash_aliases file and attempt to create
+#Check if bash_aliases file exists and attempt to create
 if [[ -e ${HOME}/.bash_aliases ]]; then
   echo "${HOME}/.bash_aliases already exists"
   read -p "Add kubectl alias to ${HOME}/.bash_aliases file? (Yy/Nn): " answer
   if [[ $answer == [Yy] ]]; then
     echo "Adding kubectl alias to ${HOME}/.bash_aliases"
-    #Adds "kubectl" alias to minikube's native kubectl command
+    #Adds "kubectl" as an alias to minikube's native kubectl command
     echo alias kubectl=\"minikube kubectl --\" | sudo tee -a ${HOME}/.bash_aliases
   elif [[ $answer == [Nn] ]]; then
     exit 0
   fi    
 else
   echo "creating ${HOME}/.bash_aliases file"
-  #Creates an bash_alias file
+  #Creates a bash_aliases file
   touch ${HOME}/.bash_aliases
-  #Adds "kubectl" alias to minikube's native kubectl command
+  #Adds "kubectl" as an alias to minikube's native kubectl command
   echo alias kubectl=\"minikube kubectl --\" | sudo tee -a ${HOME}/.bash_aliases
 fi
 
