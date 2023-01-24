@@ -20,12 +20,13 @@ echo \
 sudo apt-get update -y
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-#Add user to docker group
-sudo groupadd docker && sudo usermod -aG docker $USER && newgrp docker
-
 #Download and start minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
-minikube start 1> ${HOME}/kube_install.log
 touch ${HOME}/.bash_aliases
 echo alias kubectl=\"minikube kubectl --\" | sudo tee -a ${HOME}/.bash_aliases
+
+echo "To start <minikube>, use minikube start"
+
+#Add user to docker group & switches to docker group in a new shell
+sudo usermod -aG docker $USER && newgrp docker
