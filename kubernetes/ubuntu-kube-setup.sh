@@ -36,9 +36,16 @@ if [[ -e ${HOME}/.bash_aliases ]]; then
   elif [[ $answer == [Nn] ]]; then
     exit 0
   fi    
-else
-  echo "creating ${HOME}/.bash_aliases file"
-  #Creates a bash_aliases file
+elif [[ -z $USER ]]; then
+  HOME=/home/ubuntu/
+  #creates bash_aliases file
+  echo "creating ${HOME}/.bash_aliases file" 
+  touch ${HOME}/.bash_aliases
+  #Adds "kubectl" as an alias to minikube's native kubectl command
+  echo alias kubectl=\"minikube kubectl --\" | sudo tee -a ${HOME}/.bash_aliases
+else 
+  echo "creating ${HOME}/.bash_aliases file" 
+  #creates bash_aliases file
   touch ${HOME}/.bash_aliases
   #Adds "kubectl" as an alias to minikube's native kubectl command
   echo alias kubectl=\"minikube kubectl --\" | sudo tee -a ${HOME}/.bash_aliases
@@ -47,7 +54,6 @@ fi
 #Show post-installation message on the terminal or at welcome screen
 [[ -z "$USER" ]] && $(echo "To start minikube: use minikube start" | sudo tee -a /etc/motd) || echo "To start minikube: use minikube start"
 [[ -z "$USER" ]] && $(echo "If minikube starts successfully, Try: kubectl get pod" | sudo tee -a /etc/motd) || echo "If minikube starts successfully, Try: kubectl get pod"
-
 #dockergroup check function
 dockergroupcheck() {
     if [[ $(getent group docker) ]]; then
