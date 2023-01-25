@@ -51,8 +51,12 @@ fi
 #dockergroup check function
 dockergroupcheck() {
     if [[ $(getent group docker) ]]; then
+      echo "docker group found!"
+      echo "Adding user to docker group..."
       sudo usermod -aG docker $USER && echo "${USER} has been added to docker group" && newgrp docker
     else
+      echo "No docker group found!"
+      echo "Attempting to create docker group..."
       sudo groupadd docker && sudo usermod -aG docker $USER && echo "${USER} has been added to docker group" && newgrp docker
     fi
 }
