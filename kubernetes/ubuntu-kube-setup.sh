@@ -6,10 +6,6 @@
 #Processor: A CPU with at least 2 vCores
 #Storage: At least 20GB of storage
 
-#Logs the output of the script
-LOGDIR="${HOME}/logfile.log"
-exec | sudo tee -a ${LOGDIR}
-
 #Install docker
 sudo apt-get update -y
 sudo apt-get install -y \
@@ -48,8 +44,8 @@ else
   echo alias kubectl=\"minikube kubectl --\" | sudo tee -a ${HOME}/.bash_aliases
 fi
 
-echo "To start minikube: use minikube start"
-echo "If minikube starts successfully, Try: kubectl get pod"
+[[ -z "$USER" ]] && $(echo "To start minikube: use minikube start" | sudo tee -a /etc/motd) || echo "To start minikube: use minikube start"
+[[ -z "$USER" ]] && $(echo "If minikube starts successfully, Try: kubectl get pod" | sudo tee -a /etc/motd) || echo "If minikube starts successfully, Try: kubectl get pod"
 
 #dockergroup check function
 dockergroupcheck() {
@@ -63,5 +59,4 @@ dockergroupcheck() {
 #checks if USER variable is empty. Useful if script is going to be used as a startup script
 #e.g. Userdata for EC2-Instance
 echo "Checking \$USER variable and adding to docker group"
-echo "View logfile: ${LOGDIR}"
 [[ -z "$USER" ]] && USER="ubuntu" && dockergroupcheck || dockergroupcheck
