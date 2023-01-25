@@ -44,6 +44,7 @@ else
   echo alias kubectl=\"minikube kubectl --\" | sudo tee -a ${HOME}/.bash_aliases
 fi
 
+#Show post-installation message on the terminal or at welcome screen
 [[ -z "$USER" ]] && $(echo "To start minikube: use minikube start" | sudo tee -a /etc/motd) || echo "To start minikube: use minikube start"
 [[ -z "$USER" ]] && $(echo "If minikube starts successfully, Try: kubectl get pod" | sudo tee -a /etc/motd) || echo "If minikube starts successfully, Try: kubectl get pod"
 
@@ -58,5 +59,5 @@ dockergroupcheck() {
 
 #checks if USER variable is empty. Useful if script is going to be used as a startup script
 #e.g. Userdata for EC2-Instance
-echo "Checking \$USER variable and adding to docker group"
+echo "Checking \$USER variable and adding to docker group....."
 [[ -z "$USER" ]] && USER="ubuntu" && dockergroupcheck || dockergroupcheck
