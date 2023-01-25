@@ -48,4 +48,8 @@ echo "To start minikube: use minikube start"
 echo "If minikube starts successfully, Try: kubectl get pod"
 
 #Add user to docker group and switch to docker group
-sudo usermod -aG docker $USER && newgrp docker
+if [[ $(getent group docker) ]]; then
+  sudo usermod -aG docker $USER && newgrp docker
+else
+  sudo groupadd docker && sudo usermod -aG docker $USER && newgrp docker
+fi
