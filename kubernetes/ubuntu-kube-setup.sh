@@ -47,10 +47,15 @@ fi
 echo "To start minikube: use minikube start"
 echo "If minikube starts successfully, Try: kubectl get pod"
 
-#Add user to docker group and switch to docker group
-function dockergroupcheck():
+#dockergroup check function
+dockergroupcheck() {
     if [[ $(getent group docker) ]]; then
       sudo usermod -aG docker $USER && newgrp docker
     else
       sudo groupadd docker && sudo usermod -aG docker $USER && newgrp docker
     fi
+}
+
+#checks if USER variable is empty. Useful if script is going to be used as a startup script
+#e.g. Userdata for EC2-Instance
+[[ -z "$USER" ]] && USER="ubuntu" && dockergroupcheck || dockergroupcheck
