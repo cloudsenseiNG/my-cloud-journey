@@ -22,7 +22,7 @@ sudo apt-get update -y
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 #Download and install minikube
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+[[ -e $(pwd)/minikube-linux-amd64 ]] && echo "Minikube file exists" || curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
 #Check if bash_aliases file exists and attempt to create
@@ -34,7 +34,7 @@ if [[ -e ${HOME}/.bash_aliases ]]; then
     #Adds "kubectl" as an alias to minikube's native kubectl command
     echo alias kubectl=\"minikube kubectl --\" | sudo tee -a ${HOME}/.bash_aliases
   elif [[ $answer == [Nn] ]]; then
-    exit 0
+    :
   fi    
 elif [[ -z $USER ]]; then
   HOME=/home/ubuntu/
