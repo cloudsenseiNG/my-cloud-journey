@@ -31,3 +31,6 @@ kubectl label pod pod-name key=value --overwrite
 kubectl delete rc rc-name --cascade=false #Keeps pods created by rc running regardless of deletion
 kubectl scale rc rc-name --replicas=count #count is a number. scale pods horizontally
 kubectl label pod pod-name key=value #label pod
+
+####services
+kubectl expose pod-name #creates a service for pod-name and assigns label based on pod's label selector
