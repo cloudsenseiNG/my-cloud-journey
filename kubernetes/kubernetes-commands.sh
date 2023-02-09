@@ -6,6 +6,9 @@
 ####Creating Resources
 kubectl create -f resource-file.yaml
 #
+####
+kubectl describe resource resource-name #describe a specified resource-name
+#
 ####Annotating pods
 kubectl annotate pod pod-name annnotation-key=annotaion-value #annotates a specified pod
 #
